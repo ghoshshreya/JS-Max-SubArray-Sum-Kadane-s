@@ -59,3 +59,28 @@ const inputArray = {
 console.log(maxSubArray(inputArray, bruteForceSolution));
 console.log(maxSubArray(inputArray, betterSolution));
 console.log(maxSubArray(inputArray, kadanesSolution));
+
+/*---- GET MAX SUM SUBARRAY ---------*/
+const inputArray1 = [-2, -3, 4, -1, -2, 1, 5, -3];
+
+function getMaxSumSubArrayKadane(nums) {
+  let sum = 0;
+  let maxSum = -Infinity;
+  let start = 0;
+  let end = 0;
+  inputArray1.forEach((x, i) => {
+    sum += x;
+    /* maxSum = Math.max(sum, maxSum); */
+    if (sum > maxSum) {
+      end = i;
+      maxSum = sum;
+    }
+    if (sum < 0) {
+      start = i + 1;
+      sum = 0;
+    }
+  });
+  return nums.slice(start, end + 1);
+}
+
+console.log(getMaxSumSubArrayKadane(inputArray1));
